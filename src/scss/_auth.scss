@@ -1,0 +1,116 @@
+
+
+.register {
+  background-image: url(../../assets/back2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.register .card {
+  background-color: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(1px); 
+  border: 1px solid rgba(49, 54, 42, 0.591); 
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 700px;
+}
+
+.register .card label {
+  color: white; 
+  font-weight: bold; 
+}
+
+.register .card input,
+.register .card .ant-input-affix-wrapper {
+  background-color: transparent; 
+  color: white; 
+  border: 1px solid white; 
+  border-radius: 5px; 
+}
+
+.register .card input::placeholder,
+.register .card .ant-input-affix-wrapper input::placeholder {
+  color: white !important; /* Ensures that the placeholder text color is white */
+}
+
+.register .card .ant-input-affix-wrapper input {
+  border: none;
+}
+
+.register .card .ant-btn-primary {
+  background-color: rgba(76, 0, 0, 0.2);
+  color: white; 
+  border: 1px solid white; 
+  border-radius: 5px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.register .card .ant-btn-primary:hover {
+  background-color: rgba(173, 35, 35, 0.395); 
+  color: rgb(0, 0, 0); 
+}
+
+
+
+// login
+
+.login {
+  background-image: url(../../assets/download.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login .card {
+  background-color: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(1px); 
+  border: 1px solid rgba(49, 54, 42, 0.591); 
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 800px;
+}
+
+.login .card label {
+  color: white; 
+  font-weight: bold; 
+}
+
+.login .card input,
+.login .card .ant-input-affix-wrapper {
+  background-color: transparent; 
+  color: white; 
+  border: 1px solid white; 
+  border-radius: 5px; 
+}
+
+.login .card input::placeholder,
+.login .card .ant-input-affix-wrapper input::placeholder {
+  color: white !important; /* Ensures that the placeholder text color is white */
+}
+
+.login .card .ant-input-affix-wrapper input {
+  border: none;
+}
+
+.login .card .ant-btn-primary {
+  background-color: rgba(76, 0, 0, 0.2);
+  color: white; 
+  border: 1px solid white; 
+  border-radius: 5px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.login .card .ant-btn-primary:hover {
+  background-color: rgba(219, 95, 134, 0.395); 
+  color: rgb(0, 0, 0); 
+}
+
