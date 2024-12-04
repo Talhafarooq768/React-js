@@ -21,12 +21,14 @@ const reducer = (state, action) => {
 };
 
 // Context Provider component
-export default function AuthContextProvider(props) {
+const AuthContextProvider = (props) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return (
-        <AuthContext.Provider value={{ state, dispatch }}> {/* Wrap state and dispatch in an object */}
+        <AuthContext.Provider value={{ state, dispatch }}>
             {props.children}
         </AuthContext.Provider>
     );
-}
+};
+
+export default AuthContextProvider;

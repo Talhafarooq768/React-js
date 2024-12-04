@@ -3,6 +3,8 @@ import { Form, Typography, Row, Col, Input, Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGithub, faGoogle, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from 'config/firebase';
 
 const { Title } = Typography;
 
@@ -11,10 +13,14 @@ const initialState = { email: "", Password: "" };
 const Login = () => {
     const [state, setState] = useState(initialState);
 
+    const [isProcessing, setIsProcessing] = useState(false)
+
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent page reload
 
+
         let { email, Password } = state;
+        setIsProcessing(true)
 
         if (!email) {
             return window.notify("Please Enter Your Email Correctly", "error");
@@ -23,8 +29,26 @@ const Login = () => {
         if (!Password || Password.length < 5) {
             return window.notify("Please Enter Your Password Correctly", "error");
         }
+        signInWithEmailAndPassword(auth, email, Password)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          console.log(user);
+          
+          return window.notify("User Login successfully", "success");
 
-        window.notify("User Profile Created Successfully", "success");
+          // ...
+        })
+        .catch((error) => {
+            console.log(error);
+        
+            return window.notify("something went wrong", "error");
+
+        })
+        .finally(()=>{
+            setIsProcessing(false)
+        });
+
     };
 
     const handleChange = (e) => {
@@ -32,7 +56,7 @@ const Login = () => {
     };
 
     return (
-        <main className='login p-3 p-md-4'>
+        <main className='login p-3 p-md-4 '>
             <div className="card p-3 p-md-4">
                 <Title className='text-center mb-5 text-white'>Login</Title>
                 <Form layout='vertical'>
@@ -65,34 +89,35 @@ const Login = () => {
 
                         <Col span={24}>
                             <Form.Item>
-                                <Button
-                                    type='primary'
-                                    block
-                                    htmlType='submit'
-                                    onClick={handleSubmit}
-                                >
-                                    Login
+                                <Button type='primary' block htmlType='submit' onClick={handleSubmit} disabled={isProcessing} >{isProcessing ? "Processing..." : "Login"}
                                 </Button>
                             </Form.Item>
                         </Col>
                     </Row>
-                    <Row style={{display:"flex",justifyContent:"space-between"}}>
+                    <Row style={{ display: "flex", justifyContent: "space-between" }}>
 
+                        <Col>
+                            <Form.Item  >
+                                <p size="large" className=' dont' >Don't Have An Account?
+                                </p>
+
+                            </Form.Item>
+                        </Col>
                         <Col >
                             <Form.Item >
-                                <Link to="/register" type='primary ' size="large" className='text-light'>Forget Password
+                                <Link to="/authentication/register" type='primary ' className='text-light registerclass '>Register Your Account
                                 </Link>
-                              
                             </Form.Item>
                         </Col>
+                    </Row>
+
+                    <Row justify="center d-flex ">
                         <Col >
                             <Form.Item >
-                            <Link to="/authentication/register" type='primary ' size="large" className='text-light'>Register Account
-                            </Link>
+                                <Link to="/" type='primary ' size="large" className='text-light forget' >Forget Password
+                                </Link>
                             </Form.Item>
                         </Col>
-
-                       
                     </Row>
 
                     <Row justify="center">
